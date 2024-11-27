@@ -1,11 +1,19 @@
 fn main() {
-    let mut s = String::from("Hello");
+    let mut s = String::from("hello world");
 
-    change(&mut s);
+    let word = first_word(&s);
+
+    s.clear();
 }
 
-fn change(some_string: &mut String) {
-    some_string.push_str(", world!");
+fn first_word(s: $String) -> usize {
+    let bytes = s.as_bytes();
 
-    println!("{some_string}");
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    s.len()
 }
